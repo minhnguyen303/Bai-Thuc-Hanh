@@ -1,6 +1,4 @@
 <?php
-include_once "ActionsPage.php";
-
 ?>
 <!doctype html>
 <html lang="en">

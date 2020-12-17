@@ -31,9 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $productArray = [$id, $name, $category, $amount, $price, $description, $dateCreated, $img];
 
+/*    echo $action;
+    echo $id;
+    die();*/
     switch ($action) {
         case "add":
-            addProduct($productArray);
+            if (!isExit($id)){
+                addProduct($productArray);
+            }
+            else{
+                echo "<script>alert('Sản phẩm với id này đã tồn tại');</script>";
+                header("location:index.php");
+                die();
+            }
             break;
         case "edit":
             header("location:EditPage.php");
@@ -53,6 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     header("location:index.php");
 }
 
+function isExit($id){
+    foreach ($GLOBALS["manager"]->getProducts() as $product){
+        if ($product->getId() == $id){
+            return true;
+        }
+    }
+    return false;
+}
+
 function addProduct($array)
 {
     $product = arrayToProduct($array);
@@ -62,12 +81,12 @@ function addProduct($array)
 
 function deleteProduct($id)
 {
-    $GLOBALS['productManager']->delete($id);
+    $GLOBALS['manager']->delete($id);
 }
 
 function updateProduct($id, $product)
 {
-    $GLOBALS['productManager']->update($id, $product);
+    $GLOBALS['manager']->update($id, $product);
 }
 
 function productToArray($obj)

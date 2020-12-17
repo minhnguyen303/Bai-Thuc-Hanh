@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActionsPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/ActionsPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EditPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/EditPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/ProductManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
@@ -57,7 +56,7 @@
       <workItem from="1608167734823" duration="11218000" />
       <workItem from="1608181994413" duration="5374000" />
       <workItem from="1608187528409" duration="2222000" />
-      <workItem from="1608189851726" duration="2034000" />
+      <workItem from="1608189851726" duration="4648000" />
     </task>
     <servers />
   </component>
