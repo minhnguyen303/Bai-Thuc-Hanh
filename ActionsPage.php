@@ -40,13 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 addProduct($productArray);
             }
             else{
-                echo "<script>alert('Sản phẩm với id này đã tồn tại');</script>";
-                die();
             }
             break;
         case "edit":
-            header("location:EditPage.php");
-            die();
             updateProduct($id, arrayToProduct($productArray));
             break;
         case "delete":
