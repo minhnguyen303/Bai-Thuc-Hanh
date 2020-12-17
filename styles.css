@@ -1,0 +1,59 @@
+input[type=text] { /*thuoc tinh cua the: [name='lastname']*/
+    width: 220px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 4px;
+}
+
+input[type=number] {
+    width: 100px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 4px;
+}
+
+.actions{
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
+    font-size: 16px;
+}
+
+#add {
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+#description{
+    margin: 3px 0 0 0;
+    padding: 2px 1px 0 1px;
+    height: 20px;
+    width: 300px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}
+
+#now{
+    width: 150px;
+}
+
+.submit {
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
+    font-size: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
