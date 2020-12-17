@@ -4,7 +4,7 @@ include_once "ProductManager.php";
 
 const FILENAME = 'data.json';
 $productManager = new ProductManager();
-$products = [];
+$products = loadData();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -29,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             break;
     }
 
-
 }
 
 function addProduct($arr)
 {
     $product = new Product($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5], $arr[6], $arr[7]);
     $GLOBALS["productManager"]->add($product);
+    saveData($arr);
 }
 
 function toArray($obj)

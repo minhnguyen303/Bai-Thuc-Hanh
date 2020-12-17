@@ -16,14 +16,14 @@ include_once "ActionsPage.php";
     <fieldset>
         <legend>Thêm mặt hàng</legend>
         <input type="text" name="action" value="add" hidden="hidden">
-        Id: <input type="text" name="id">
-        Tên: <input type="text" name="name">
-        Loại: <input type="text" name="category">
+        Id: <input type="text" name="id" required>
+        Tên: <input type="text" name="name" required>
+        Loại: <input type="text" name="category" required>
         Ngày tạo: <input id="now" type="text" name="timeCreated" disabled>
         <br>
-        Số lượng:<input type="number" name="amount">
-        Giá: <input type="number" name="price">
-        Ảnh: <input type="file" name="img">
+        Số lượng:<input type="number" name="amount" required>
+        Giá: <input type="number" name="price" required>
+        Ảnh: <input type="text" name="img" required>
         Mô tả: <textarea name="description" id="description"></textarea>
         <button type="submit" class="actions" id="add">Thêm</button>
     </fieldset>
