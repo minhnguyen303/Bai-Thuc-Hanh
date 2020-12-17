@@ -1,6 +1,7 @@
 <?php
 include_once "ActionsPage.php";
-
+$today = date("H:i - j/m/Y");
+$script = "<script>document.getElementById('now').value = '$today'</script>";
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,19 +14,20 @@ include_once "ActionsPage.php";
     <title>Cửa hàng</title>
 </head>
 <body>
-<form action="" method="post">
+<form method="post">
     <fieldset>
         <legend>Thêm mặt hàng</legend>
         <input type="text" name="action" value="add" hidden="hidden">
         Id: <input type="text" name="id" required>
         Tên: <input type="text" name="name" required>
         Loại: <input type="text" name="category" required>
-        Ngày tạo: <input id="now" type="text" name="dateCreated" disabled>
+        Ngày tạo: <label for="now"></label><input id="now" type="text" name="dateCreated" disabled="disabled">
         <br>
         Số lượng:<input type="number" name="amount" required>
         Giá: <input type="number" name="price" required>
         Ảnh: <input type="text" name="img" required>
         Mô tả: <textarea name="description" id="description"></textarea>
+        <button type="submit" class="actions" id="add">Thêm</button>
         <button type="submit" class="actions" id="add">Thêm</button>
     </fieldset>
 </form>
@@ -55,6 +57,8 @@ include_once "ActionsPage.php";
             <td><?php echo $product->getImg()?></td>
             <td>
                 <form action="EditPage.php" method="post">
+                    <input type="text" name="idEdit" value="<?php echo $product->getId()?>" hidden="hidden">
+                    <input type="text" name="action" value="edit" hidden="hidden">
                     <button>Sửa</button>
                 </form></td>
         </tr>
@@ -62,7 +66,5 @@ include_once "ActionsPage.php";
 </body>
 </html>
 <?php
-$today = date("H:i - j/m/Y");
-$script = "<script>document.getElementById('now').value = '$today'</script>";
 echo $script;
 ?>

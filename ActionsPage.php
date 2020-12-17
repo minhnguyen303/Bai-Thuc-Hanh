@@ -26,47 +26,57 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $amount = $_POST['amount'];
     $price = $_POST['price'];
     $description = $_POST['description'];
-    $dateCreated = $_POST['timeCreated'];
+    $dateCreated = date("H:i - j/m/Y");
     $img = $_POST['img'];
 
-    //$productArray = [$id, $name, $category, $amount, $price, $description, $dateCreated, $img];
+    $productArray = [$id, $name, $category, $amount, $price, $description, $dateCreated, $img];
 
     switch ($action) {
         case "add":
-            addProduct($id, $name, $category, $amount, $price, $description, $dateCreated, $img);
+            addProduct($productArray);
             break;
         case "edit":
+            header("location:EditPage.php");
+            die();
+            updateProduct($id, arrayToProduct($productArray));
+            break;
+        case "delete":
+            deleteProduct($id);
             break;
     }
 
     $dataSave = [];
     foreach ($manager->getProducts() as $value) {
-        array_push($dataSave, toArray($value));
+        array_push($dataSave, productToArray($value));
     }
     saveData($dataSave);
     header("location:index.php");
 }
 
-function addProduct($id, $name, $category, $amount, $price, $description, $dateCreated, $img)
+function addProduct($array)
 {
-    $product = new Product($id, $name, $category, $amount, $price, $description, $dateCreated, $img);
+    $product = arrayToProduct($array);
     $GLOBALS["manager"]->add($product);
-    saveData(toArray($product));
+    saveData(productToArray($product));
 }
 
-function deleteProduct($index)
+function deleteProduct($id)
 {
-    $GLOBALS['productManager']->delete($index);
+    $GLOBALS['productManager']->delete($id);
 }
 
-function updateProduct($index, $product)
+function updateProduct($id, $product)
 {
-
+    $GLOBALS['productManager']->update($id, $product);
 }
 
-function toArray($obj)
+function productToArray($obj)
 {
     return [$obj->getID(), $obj->getName(), $obj->getCategory(), $obj->getAmount(), $obj->getPrice(), $obj->getDescription(), $obj->getDateCreated(), $obj->getImg()];
+}
+
+function arrayToProduct($array){
+    return new Product($array[0], $array[1], $array[2], $array[3], $array[4], $array[5], $array[6], $array[7]);
 }
 
 function saveData($data)

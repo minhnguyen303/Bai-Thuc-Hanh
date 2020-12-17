@@ -19,18 +19,27 @@ class ProductManager
         array_push($this->products, $product);
     }
 
-    public function read($index)
+    public function read($id)
     {
-        return $this->products[$index];
+        return $this->products[$this->getIndex($id)];
     }
 
-    public function update($index, $product)
+    public function update($id, $product)
     {
-        $this->products[$index] = $product;
+        $this->products[$this->getIndex($id)] = $product;
     }
 
-    public function delete($index)
+    public function delete($id)
     {
-        array_splice($this->products, $index, 1);
+        array_splice($this->products, $this->getIndex($id), 1);
+    }
+
+    private function getIndex($id)
+    {
+        foreach ($this->products as $key=>$value) {
+            if ($value->getID() == $id) {
+                return $key;
+            }
+        }
     }
 }
