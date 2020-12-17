@@ -1,6 +1,6 @@
 <?php
 include_once "ActionsPage.php";
-$today = date("H:i - j/m/Y");
+$today = date("j/m/Y");
 $script = "<script>document.getElementById('now').value = '$today'</script>";
 ?>
 <!doctype html>
@@ -18,13 +18,13 @@ $script = "<script>document.getElementById('now').value = '$today'</script>";
     <fieldset>
         <legend>Thêm mặt hàng</legend>
         <input type="text" name="action" value="add" hidden="hidden">
-        Id: <input type="number" name="id" required>
+        Id: <input type="number" name="id" required min="0">
         Tên: <input type="text" name="name" required>
         Loại: <input type="text" name="category" required>
         Ngày tạo: <label for="now"></label><input id="now" type="text" name="dateCreated" disabled="disabled">
         <br>
-        Số lượng:<input type="number" name="amount" required>
-        Giá: <input type="number" name="price" required>
+        Số lượng:<input type="number" name="amount" required min="1">
+        Giá: <input type="number" name="price" required min="0">
         Ảnh: <input type="text" name="img" required>
         Mô tả: <textarea name="description" id="description"></textarea>
         <button type="submit" class="actions" id="add">Thêm</button>
@@ -33,13 +33,13 @@ $script = "<script>document.getElementById('now').value = '$today'</script>";
 <form method="post">
     <fieldset>
         <legend>Sửa mặt hàng</legend>
-        <input type="number" name="action" value="add" hidden="hidden">
-        Id: <input type="text" name="id" required>
+        <input type="number" name="action" value="update" hidden="hidden">
+        Id: <input type="number" name="id" required min="0">
         Tên: <input type="text" name="name" required>
         Loại: <input type="text" name="category" required>
         <br>
-        Số lượng:<input type="number" name="amount" required>
-        Giá: <input type="number" name="price" required>
+        Số lượng:<input type="number" name="amount" required min="1">
+        Giá: <input type="number" name="price" required min="0">
         Ảnh: <input type="text" name="img" required>
         Mô tả: <textarea name="description" id="description"></textarea>
         <button type="submit" class="actions" id="add">Cập nhật</button>
@@ -73,7 +73,8 @@ $script = "<script>document.getElementById('now').value = '$today'</script>";
                     <input type="text" name="id" value="<?php echo $product->getId()?>" hidden="hidden">
                     <input type="text" name="action" value="delete" hidden="hidden">
                     <button type="submit">Xóa</button>
-                </form></td>
+                </form>
+            </td>
         </tr>
     <?php endforeach;?>
 </body>

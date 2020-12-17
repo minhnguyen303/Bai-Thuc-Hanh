@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             else{
                 echo "<script>alert('Sản phẩm với id này đã tồn tại');</script>";
-                header("location:index.php");
                 die();
             }
             break;
