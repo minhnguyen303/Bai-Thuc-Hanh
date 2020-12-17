@@ -3,8 +3,18 @@ include_once "Product.php";
 include_once "ProductManager.php";
 
 const FILENAME = 'data.json';
-$productManager = new ProductManager();
-$products = loadData();
+
+$dataLoad = loadData();
+$manager = new ProductManager();
+
+if (count($dataLoad) > 0) {
+    foreach ($dataLoad as $value) {
+        $product = new Product($value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7]);
+        $manager->add($product);
+    }
+}
+
+$listProducts = $manager->getProducts();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -16,32 +26,47 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $amount = $_POST['amount'];
     $price = $_POST['price'];
     $description = $_POST['description'];
-    $dateCreated = $_POST['dateCreated'];
+    $dateCreated = $_POST['timeCreated'];
     $img = $_POST['img'];
 
-    $array = [$id, $name, $category, $amount, $price, $description, $dateCreated, $img];
+    //$productArray = [$id, $name, $category, $amount, $price, $description, $dateCreated, $img];
 
     switch ($action) {
         case "add":
-            addProduct($array);
+            addProduct($id, $name, $category, $amount, $price, $description, $dateCreated, $img);
             break;
         case "edit":
             break;
     }
 
+    $dataSave = [];
+    foreach ($manager->getProducts() as $value) {
+        array_push($dataSave, toArray($value));
+    }
+    saveData($dataSave);
+    header("location:index.php");
 }
 
-function addProduct($arr)
+function addProduct($id, $name, $category, $amount, $price, $description, $dateCreated, $img)
 {
-    $product = new Product($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5], $arr[6], $arr[7]);
-    $GLOBALS["productManager"]->add($product);
-    saveData($arr);
+    $product = new Product($id, $name, $category, $amount, $price, $description, $dateCreated, $img);
+    $GLOBALS["manager"]->add($product);
+    saveData(toArray($product));
+}
+
+function deleteProduct($index)
+{
+    $GLOBALS['productManager']->delete($index);
+}
+
+function updateProduct($index, $product)
+{
+
 }
 
 function toArray($obj)
 {
-    $array = $obj + 132;
-    return $array;
+    return [$obj->getID(), $obj->getName(), $obj->getCategory(), $obj->getAmount(), $obj->getPrice(), $obj->getDescription(), $obj->getDateCreated(), $obj->getImg()];
 }
 
 function saveData($data)
@@ -52,5 +77,5 @@ function saveData($data)
 
 function loadData()
 {
-    return json_decode(file_get_contents(FILENAME));
+    return json_decode(file_get_contents(FILENAME), true);
 }

@@ -1,5 +1,6 @@
 <?php
 include_once "ActionsPage.php";
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,7 +20,7 @@ include_once "ActionsPage.php";
         Id: <input type="text" name="id" required>
         Tên: <input type="text" name="name" required>
         Loại: <input type="text" name="category" required>
-        Ngày tạo: <input id="now" type="text" name="timeCreated" disabled>
+        Ngày tạo: <input id="now" type="text" name="dateCreated" disabled>
         <br>
         Số lượng:<input type="number" name="amount" required>
         Giá: <input type="number" name="price" required>
@@ -42,16 +43,16 @@ include_once "ActionsPage.php";
         <th>Ảnh</th>
         <th>Hành động</th>
     </tr>
-    <?php foreach ($GLOBALS['products'] as $key=>$product):?>
+    <?php foreach ($GLOBALS['listProducts'] as $product):?>
         <tr>
-            <td><?php echo $product['id']?></td>
-            <td><?php echo $product['name']?></td>
-            <td><?php echo $product['category']?></td>
-            <td><?php echo $product['amount']?></td>
-            <td><?php echo $product['price']?></td>
-            <td><?php echo $product['description']?></td>
-            <td><?php echo $product['dateCreated']?></td>
-            <td><?php echo $product['img']?></td>
+            <td><?php echo $product->getId()?></td>
+            <td><?php echo $product->getName()?></td>
+            <td><?php echo $product->getCategory()?></td>
+            <td><?php echo $product->getAmount()?></td>
+            <td><?php echo $product->getPrice()?></td>
+            <td><?php echo $product->getDescription()?></td>
+            <td><?php echo $product->getDateCreated()?></td>
+            <td><?php echo $product->getImg()?></td>
             <td>
                 <form action="EditPage.php" method="post">
                     <button>Sửa</button>
